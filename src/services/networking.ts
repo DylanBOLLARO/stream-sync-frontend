@@ -16,7 +16,6 @@ export const axiosQuery = async (options: RequestOptions = {}) => {
 			queryParams = {}
 		} = options;
 
-		console.log(options);
 		const {
 			take = 25,
 			orderBy = { audience_rating: "desc" },
@@ -25,7 +24,7 @@ export const axiosQuery = async (options: RequestOptions = {}) => {
 
 		const requestOptions: AxiosRequestConfig = {
 			method,
-			url: process.env.NEXT_PUBLIC_NESTJS_URL + url,
+			url: process.env.NEXT_PUBLIC_BACKEND_URL + url,
 			data: payload,
 			params: {
 				take,

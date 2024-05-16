@@ -34,7 +34,8 @@ export default function Page({ params }: { params: { id: string } }) {
 			</h1>
 			<Card className="flex flex-row">
 				<Image
-					src={`http://localhost:25000/${movie?.image}`}
+					className="w-auto"
+					src={`${process.env.NEXT_PUBLIC_BACKEND_BASE}/${movie?.image}`}
 					width={250}
 					height={250}
 					alt="Picture of the author"
@@ -42,24 +43,24 @@ export default function Page({ params }: { params: { id: string } }) {
 				<div className="p-3">
 					<p>Note: {movie.audience_rating}</p>
 					<p>Durée: {movie.duration}</p>
-					<p>
-						Genre:
+					<div>
+						<p>Genre:</p>
 						{movie.genres.map((genre: any) => {
-							return <Badge>{genre}</Badge>;
+							return <Badge key={genre}>{genre}</Badge>;
 						})}
-					</p>
-					<p>
-						Réalisateur:
+					</div>
+					<div>
+						<p>Réalisateur:</p>
 						{movie.directors.map((director: any) => {
-							return <Badge>{director}</Badge>;
+							return <Badge key={director}>{director}</Badge>;
 						})}
-					</p>
-					<p>
-						Acteurs:
+					</div>
+					<div>
+						<p>Acteurs:</p>
 						{movie.actors.map((actor: any) => {
-							return <Badge>{actor}</Badge>;
+							return <Badge key={actor}>{actor}</Badge>;
 						})}
-					</p>
+					</div>
 				</div>
 			</Card>
 			<p>{movie.synopsis}</p>
@@ -67,7 +68,7 @@ export default function Page({ params }: { params: { id: string } }) {
 				<video
 					preload="none"
 					controls
-					src="http://localhost:25000/api/v1/video/stream/1"
+					src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/video/stream/1`}
 				/>
 			</Card>
 		</div>

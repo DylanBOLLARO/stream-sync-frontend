@@ -14,13 +14,13 @@ const SiteHeader = () => {
 			<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
 				<Star className="h-6 w-6" />
 				<Link
-					href="/"
+					href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}`}
 					className="text-muted-foreground transition-colors hover:text-foreground text-xl"
 				>
 					Accueil
 				</Link>
 				<Link
-					href="/favoris"
+					href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/favoris`}
 					className="text-muted-foreground transition-colors hover:text-foreground text-xl"
 				>
 					Favoris
