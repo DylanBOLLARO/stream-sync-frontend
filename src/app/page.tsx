@@ -12,17 +12,14 @@ export default function Home() {
 		<div className="flex flex-wrap gap-5 w-full justify-center">
 			{movies_list?.map((movie: any) => {
 				return (
-					<Link
-						key={movie.id}
-						href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}movie/${movie?.id}`}
-					>
+					<Link key={movie.id} href={`movie/${movie?.id}`}>
 						<Card className="flex flex-col w-44 select-none cursor-pointer hover:bg-primary-foreground transition-all duration-75">
 							<Image
 								className="w-auto"
 								src={`${process.env.NEXT_PUBLIC_BACKEND_BASE}/${movie?.image}`}
 								width={300}
 								height={300}
-								alt="Picture of the author"
+								alt={movie?.title}
 								quality={20}
 							/>
 							<CardDescription className="line-clamp-1 text-sm text-center p-1">
