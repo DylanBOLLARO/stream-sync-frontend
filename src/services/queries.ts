@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovie, getMovies } from "./api";
+import { getFavorite, getMovie, getMovies, getSearch } from "./api";
 
-export function useMovies() {
+export function useMovies(params: any) {
 	return useQuery({
-		queryKey: ["movies"],
-		queryFn: getMovies,
+		queryKey: ["movies", { params }],
+		queryFn: () => getMovies(params),
 		refetchOnWindowFocus: false
 	});
 }
@@ -13,6 +13,23 @@ export function useMovie(id: number) {
 	return useQuery({
 		queryKey: ["movie", { id }],
 		queryFn: () => getMovie(id),
+		refetchOnWindowFocus: false
+	});
+}
+
+export function useSearch(str: string, params: any) {
+	return useQuery({
+		queryKey: ["searchMovies", { str, params }],
+		queryFn: () => getSearch(str, params),
+		refetchOnWindowFocus: false,
+		enabled: !!str
+	});
+}
+
+export function useFavorite(params: any) {
+	return useQuery({
+		queryKey: ["favorite", { params }],
+		queryFn: () => getFavorite(params),
 		refetchOnWindowFocus: false
 	});
 }

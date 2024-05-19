@@ -6,11 +6,15 @@ import { ModeToggle } from "./ModeToggle";
 
 const SiteHeader = () => {
 	return (
-		<header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 select-none ">
-			<h1 className="absolute text-2xl tracking-tight lg:text-3xl left-1/2 -translate-x-1/2">
+		<header className="flex md:sticky top-0 z-50 h-16 items-center gap-4 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90 px-4 md:px-12 justify-center">
+			<Link
+				href={"/"}
+				className="absolute text-2xl tracking-tight lg:text-3xl left-1/2 -translate-x-1/2"
+			>
 				Stream{" "}
 				<span className="font-extrabold text-lime-500">Sync</span>
-			</h1>
+			</Link>
+
 			<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
 				<Star className="h-6 w-6" />
 				<Link

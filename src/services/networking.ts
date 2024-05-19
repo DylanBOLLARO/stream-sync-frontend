@@ -18,7 +18,8 @@ export const axiosQuery = async (options: RequestOptions = {}) => {
 
 		const {
 			take = 25,
-			orderBy = { audience_rating: "desc" },
+			page = 1,
+			orderBy = "desc",
 			...restQueryParams
 		} = queryParams;
 
@@ -29,6 +30,7 @@ export const axiosQuery = async (options: RequestOptions = {}) => {
 			params: {
 				take,
 				orderBy,
+				page,
 				...restQueryParams
 			}
 		};
