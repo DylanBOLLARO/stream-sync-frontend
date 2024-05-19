@@ -8,7 +8,7 @@ const SiteHeader = () => {
 	return (
 		<header className="flex md:sticky top-0 z-50 h-16 items-center gap-4 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90 px-4 md:px-12 justify-center">
 			<Link
-				href={"/"}
+				href={`${process.env.NEXT_PUBLIC_FRONTEND_PREFIX}/`}
 				className="absolute text-2xl tracking-tight lg:text-3xl left-1/2 -translate-x-1/2"
 			>
 				Stream{" "}
@@ -18,13 +18,13 @@ const SiteHeader = () => {
 			<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
 				<Star className="h-6 w-6" />
 				<Link
-					href={`/`}
+					href={`${process.env.NEXT_PUBLIC_FRONTEND_PREFIX}/`}
 					className="text-muted-foreground transition-colors hover:text-foreground text-xl"
 				>
 					Accueil
 				</Link>
 				<Link
-					href={`/favoris`}
+					href={`${process.env.NEXT_PUBLIC_FRONTEND_PREFIX}/favoris`}
 					className="text-muted-foreground transition-colors hover:text-foreground text-xl"
 				>
 					Favoris
