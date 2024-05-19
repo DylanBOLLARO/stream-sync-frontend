@@ -14,7 +14,7 @@ const PaginationControls = ({ page, search = "" }: any) => {
 			<PaginationContent className="flex flex-row gap-5">
 				<PaginationItem>
 					<PaginationPrevious
-						href={`/?page=${Number(page) - 1}${search && search !== "" ? `&search=${search}` : ""}`}
+						href={`${process.env.NEXT_PUBLIC_FRONTEND_PREFIX}/?page=${Number(page) - 1}${search && search !== "" ? `&search=${search}` : ""}`}
 					/>
 				</PaginationItem>
 				<PaginationItem>
@@ -23,7 +23,7 @@ const PaginationControls = ({ page, search = "" }: any) => {
 
 				<PaginationItem>
 					<PaginationNext
-						href={`/?page=${Number(page) + 1}${search && search !== "" ? `&search=${search}` : ""}`}
+						href={`${process.env.NEXT_PUBLIC_FRONTEND_PREFIX}/?page=${Number(page) + 1}${search && search !== "" ? `&search=${search}` : ""}`}
 					/>
 				</PaginationItem>
 			</PaginationContent>
