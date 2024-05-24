@@ -41,11 +41,15 @@ export default function Home({ searchParams }: any) {
 		[search_params]
 	);
 
-	function handleInputChange(str: string) {
+	const resetForm = () => {
+		if (formRef.current) formRef.current.reset();
+	};
+
+	const handleInputChange = (str: string) => {
 		refInputSearch.current = str;
 		setAdvancedSearchParams({ ...advancedSearchParams, search: str });
 		router.push(pathname + "?" + createQueryString("search", str));
-	}
+	};
 
 	if (error)
 		return (
@@ -89,6 +93,7 @@ export default function Home({ searchParams }: any) {
 							<Button
 								className="self-center px-2 py-1 rounded gap-3"
 								onClick={() => {
+									resetForm();
 									router.push(
 										pathname +
 											"?" +
