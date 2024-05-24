@@ -7,12 +7,13 @@ import { Input } from "@/components/ui/input";
 import { useMovies, useSearch } from "@/services/queries";
 import { Search, SquareX } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export default function Home({ searchParams }: any) {
 	const page = (searchParams?.page ?? 1) < 1 ? 1 : searchParams?.page ?? 1;
 	const search = searchParams?.search ?? "";
-
+	const refInputSearch = useRef<string>("");
+	const formRef = useRef<HTMLFormElement | null>(null);
 	const router = useRouter();
 	const pathname = usePathname();
 	const search_params = useSearchParams();
@@ -40,6 +41,12 @@ export default function Home({ searchParams }: any) {
 		[search_params]
 	);
 
+	function handleInputChange(str: string) {
+		refInputSearch.current = str;
+		setAdvancedSearchParams({ ...advancedSearchParams, search: str });
+		router.push(pathname + "?" + createQueryString("search", str));
+	}
+
 	if (error)
 		return (
 			<h2 className="text-xl self-center text-center font-semibold flex-1">
@@ -49,7 +56,7 @@ export default function Home({ searchParams }: any) {
 
 	return (
 		<div className="flex flex-col gap-5 w-full justify-center">
-			<form className="w-1/2 mx-auto">
+			<form className="w-1/2 mx-auto" ref={formRef}>
 				<div className="relative">
 					<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
 					<Input
@@ -57,20 +64,8 @@ export default function Home({ searchParams }: any) {
 						placeholder="Search..."
 						className="pl-10"
 						onChange={(e) => {
-							setAdvancedSearchParams({
-								...advancedSearchParams,
-								search: e.target.value
-							});
-							router.push(
-								pathname +
-									"?" +
-									createQueryString(
-										"search",
-										`${e.target.value}`
-									)
-							);
+							handleInputChange(e.target.value);
 						}}
-						value={search}
 					/>
 				</div>
 			</form>
@@ -87,7 +82,9 @@ export default function Home({ searchParams }: any) {
 						<div className="flex flex-row justify-center gap-5">
 							<h2 className="text-xl text-center font-semibold my-5">
 								Results for the search:{" "}
-								<span className="font-bold">{search}</span>
+								<span className="font-bold">
+									{refInputSearch.current}
+								</span>
 							</h2>
 							<Button
 								className="self-center px-2 py-1 rounded gap-3"
@@ -147,7 +144,7 @@ export default function Home({ searchParams }: any) {
 				</div>
 			)}
 
-			<PaginationControls page={page} search={search} />
+			<PaginationControls page={page} search={refInputSearch.current} />
 		</div>
 	);
 }
