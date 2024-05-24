@@ -9,7 +9,7 @@ const CardMovieList = ({ movie }: any) => {
 			<Card className="flex flex-col w-44 select-none cursor-pointer hover:bg-primary-foreground transition-all duration-75">
 				<Image
 					className="w-auto"
-					src={`${process.env.NEXT_PUBLIC_BACKEND_BASE}/${movie?.image}`}
+					src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${movie?.image}`}
 					width={300}
 					height={300}
 					alt={movie?.title}

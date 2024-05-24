@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
-	assetPrefix: "/stream-sync",
+	assetPrefix: isProd ? "/stream-sync" : "",
 	images: {
 		unoptimized: true,
 		remotePatterns: [
@@ -10,5 +13,4 @@ const nextConfig = {
 		]
 	}
 };
-
 export default nextConfig;

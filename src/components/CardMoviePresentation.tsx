@@ -9,7 +9,7 @@ const CardMoviePresentation = ({ movie }: any) => {
 		<Card className="flex max-sm:flex-col">
 			<Image
 				className="w-auto"
-				src={`${process.env.NEXT_PUBLIC_BACKEND_BASE}/${movie?.image}`}
+				src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${movie?.image}`}
 				width={250}
 				height={250}
 				alt={movie.title}
