@@ -64,6 +64,7 @@ export default function Home({ searchParams }: any) {
 				<div className="relative">
 					<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
 					<Input
+						value={search}
 						type="search"
 						placeholder="Search..."
 						className="pl-10"
@@ -80,33 +81,32 @@ export default function Home({ searchParams }: any) {
 				</h2>
 			)}
 
+			{refInputSearch.current && (
+				<div className="flex flex-row justify-center gap-5">
+					<h2 className="text-xl text-center font-semibold my-5">
+						Results for the search:{" "}
+						<span className="font-bold">
+							{refInputSearch.current}
+						</span>
+					</h2>
+					<Button
+						className="self-center px-2 py-1 rounded gap-3"
+						onClick={() => {
+							resetForm();
+							refInputSearch.current = "";
+							router.push(
+								pathname + "?" + createQueryString("search", ``)
+							);
+						}}
+					>
+						<p>Cancel search</p>
+						<SquareX className="w-8 h-8" />
+					</Button>
+				</div>
+			)}
+
 			{searchResult && (
 				<>
-					{search && (
-						<div className="flex flex-row justify-center gap-5">
-							<h2 className="text-xl text-center font-semibold my-5">
-								Results for the search:{" "}
-								<span className="font-bold">
-									{refInputSearch.current}
-								</span>
-							</h2>
-							<Button
-								className="self-center px-2 py-1 rounded gap-3"
-								onClick={() => {
-									resetForm();
-									router.push(
-										pathname +
-											"?" +
-											createQueryString("search", ``)
-									);
-								}}
-							>
-								<p>Cancel search</p>
-								<SquareX className="w-8 h-8" />
-							</Button>
-						</div>
-					)}
-
 					{searchResult.length > 0 && (
 						<div className="flex flex-wrap gap-5 w-full justify-center">
 							{searchResult.map((movie: any) => {

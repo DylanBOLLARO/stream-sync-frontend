@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const CardMovieList = ({ movie }: any) => {
 	return movie ? (
-		<Link key={movie.id} href={`movie/${movie.id}`}>
+		<Link key={movie.id} href={`/movie/${movie.id}`}>
 			<Card className="flex flex-col w-44 select-none cursor-pointer hover:bg-primary-foreground transition-all duration-75">
 				<Image
 					className="w-auto"
