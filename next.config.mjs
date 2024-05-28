@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
-	basePath: "/stream-sync",
+	basePath: isProd ? "/member-curriculum" : "",
+	output: isProd ? "standalone" : null,
 	images: {
 		unoptimized: true,
 		remotePatterns: [
@@ -11,4 +14,5 @@ const nextConfig = {
 		]
 	}
 };
+
 export default nextConfig;
